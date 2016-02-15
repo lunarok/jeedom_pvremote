@@ -1,0 +1,39 @@
+<div class="eqLogic-widget eqLogic allowResize pvremote" style="height: #height#;width: #width#;background-color: #background_color#; padding : 0px; #style#" data-eqLogic_id="#id#" data-version="dashboard" >	<center>
+        <span style="font-size : 1.2em;"><a href="#eqLink#">#name#</a></span><br />
+	</center>
+
+  <center>
+            <span class="cmd" data-type="action" data-subtype="other" data-cmd_id="#idclear#" data-cmd_uid="cmd#idclear#clear">
+    <a class="btn btn-sm btn-default action cmdName tooltips" title="#txtclear#" style="background-color:#background_color# !important;border-color : transparent !important;"><i class="fa fa-check-square"></i></a>
+    <script>
+        $('.cmd[data-cmd_uid=cmd#idclear#clear]:last .action').off('click').on('click', function () {
+            jeedom.cmd.execute({id: '#idclear#'});
+        });
+    </script>
+</span>
+<span class="cmd" data-type="action" data-subtype="other" data-cmd_id="#idmissed#" data-cmd_uid="cmd#idmissed#missed">
+    <a class="btn btn-sm btn-default action cmdName tooltips" title="#txtmissed#" style="background-color:#background_color# !important;border-color : transparent !important;"><i class="fa fa-cloud-download"></i></a>
+    <script>
+        $('.cmd[data-cmd_uid=cmd#idmissed#missed]:last .action').off('click').on('click', function () {
+            jeedom.cmd.execute({id: '#idmissed#'});
+        });
+    </script>
+</span>
+<span class="cmd" data-type="action" data-subtype="other">
+    <a class="btn btn-sm btn-default action cmdName tooltips" title="Accéder à l'interface" style="background-color:#background_color# !important;border-color : transparent !important;" onclick="loadModal#id#()"><i class="fa fa-desktop"></i></a>
+    <script>
+        function loadModal#id#() {
+    			$('#md_modal2').dialog({
+    				title: "PVR"
+    			});
+
+    			$('#md_modal2').load('index.php?v=d&plugin=pvremote&modal=pvremote&id=#id#').dialog('open');
+     }
+    </script>
+</span>
+</center>
+
+	<div class="list-group" style="margin:10px;">
+		#pvr#
+	</div>
+</div>

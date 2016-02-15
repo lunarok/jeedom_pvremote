@@ -1,0 +1,5 @@
+==== Configuration du plugin
+
+Le plugin ne comporte pas de configuration générale.
+
+Il faut entrer l'adresse de Sickbeard sur la page d'équipement ainsi que choisir l'adresse la commande de lecture.
