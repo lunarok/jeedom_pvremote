@@ -20,23 +20,12 @@
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 
 class pvremote extends eqLogic {
-  /*     * *************************Attributs****************************** */
 
-
-  /*     * ***********************Methode static*************************** */
-
+  public static $_widgetPossibility = array('custom' => true);
 
   public static function cronHourly() {
     foreach (eqLogic::byType('pvremote', true) as $pvremote) {
       log::add('pvremote', 'debug', 'pull cron');
-      $pvremote->getInformations();
-      $mc = cache::byKey('pvremoteWidgetdashboard' . $pvremote->getId());
-      $mc->remove();
-      $pvremote->toHtml('dashboard');
-      $mc = cache::byKey('pvremoteWidgetmobile' . $pvremote->getId());
-      $mc->remove();
-      $pvremote->toHtml('mobile');
-      $pvremote->refreshWidget();
     }
 
   }
@@ -403,41 +392,14 @@ $this->setLogicalId($this->getConfiguration('addr'));
   }
 
   public function toHtml($_version = 'dashboard') {
-    if ($this->getIsEnable() != 1) {
-            return '';
-        }
-        if (!$this->hasRight('r')) {
-            return '';
-        }
-        $_version = jeedom::versionAlias($_version);
-        if ($this->getDisplay('hideOn' . $_version) == 1) {
-            return '';
-        }
-        $vcolor = 'cmdColor';
-        if ($_version == 'mobile') {
-            $vcolor = 'mcmdColor';
-        }
-        $parameters = $this->getDisplay('parameters');
-        $cmdColor = ($this->getPrimaryCategory() == '') ? '' : jeedom::getConfiguration('eqLogic:category:' . $this->getPrimaryCategory() . ':' . $vcolor);
-        if (is_array($parameters) && isset($parameters['background_cmd_color'])) {
-            $cmdColor = $parameters['background_cmd_color'];
-        }
-
-        if (($_version == 'dview' || $_version == 'mview') && $this->getDisplay('doNotShowNameOnView') == 1) {
-            $replace['#name#'] = '';
-            $replace['#object_name#'] = (is_object($object)) ? $object->getName() : '';
-        }
-        if (($_version == 'mobile' || $_version == 'dashboard') && $this->getDisplay('doNotShowNameOnDashboard') == 1) {
-            $replace['#name#'] = '<br/>';
-            $replace['#object_name#'] = (is_object($object)) ? $object->getName() : '';
-        }
-
-        if (is_array($parameters)) {
-            foreach ($parameters as $key => $value) {
-                $replace['#' . $key . '#'] = $value;
-            }
-        }
-    $background=$this->getBackgroundColor($_version);
+    $replace = $this->preToHtml($_version);
+    if (!is_array($replace)) {
+      return $replace;
+    }
+    $version = jeedom::versionAlias($_version);
+    if ($this->getDisplay('hideOn' . $version) == 1) {
+      return '';
+    }
 
     if ($this->getConfiguration('type') == 'sickbeard') {
   $playlist = pvremoteCmd::byEqLogicIdAndLogicalId($this->getId(),'playlist');
@@ -465,19 +427,11 @@ $this->setLogicalId($this->getConfiguration('addr'));
 
   $clearcmd = pvremoteCmd::byEqLogicIdAndLogicalId($this->getId(),'clearhist');
   $missedcmd = pvremoteCmd::byEqLogicIdAndLogicalId($this->getId(),'getmissed');
-  $replace = array(
-    '#name#' => $this->getName(),
-    '#id#' => $this->getId(),
-    '#background_color#' => $background,
-    '#height#' => $this->getDisplay('height', 'auto'),
-    '#width#' => $this->getDisplay('width', '200px'),
-    '#eqLink#' => ($this->hasRight('w')) ? $this->getLinkToConfiguration() : '#',
-    '#pvr#' => $pvr,
-    '#idclear#' => $clearcmd->getId(),
-    '#txtclear#' => 'Purge de l\'historique',
-    '#idmissed#' => $missedcmd->getId(),
-    '#txtmissed#' => 'Relancer les missed',
-  );
+    $replace['#pvr#'] = $pvr;
+    $replace['#idclear#'] = $clearcmd->getId();
+    $replace['#txtclear#'] = 'Purge de l\'historique';
+    $replace['#idmissed#'] = $missedcmd->getId();
+    $replace['#txtmissed#'] = 'Relancer les missed';
 } else {
 
   $coming = pvremoteCmd::byEqLogicIdAndLogicalId($this->getId(),'wanted');
@@ -499,23 +453,14 @@ $this->setLogicalId($this->getConfiguration('addr'));
 
   $clearcmd = pvremoteCmd::byEqLogicIdAndLogicalId($this->getId(),'update');
   $missedcmd = pvremoteCmd::byEqLogicIdAndLogicalId($this->getId(),'search');
-  $replace = array(
-    '#name#' => $this->getName(),
-    '#id#' => $this->getId(),
-    '#background_color#' => $background,
-    '#height#' => $this->getDisplay('height', 'auto'),
-    '#width#' => $this->getDisplay('width', '200px'),
-    '#eqLink#' => ($this->hasRight('w')) ? $this->getLinkToConfiguration() : '#',
-    '#pvr#' => $pvr,
-    '#idclear#' => $clearcmd->getId(),
-    '#txtclear#' => 'Scan de la vidéothèque',
-    '#idmissed#' => $missedcmd->getId(),
-    '#txtmissed#' => 'Lancer une recherche',
-  );
+    $replace['#pvr#'] = $pvr;
+    $replace['#idclear#'] = $clearcmd->getId();
+    $replace['#txtclear#'] = 'Scan de la vidéothèque';
+    $replace['#idmissed#'] = $missedcmd->getId();
+    $replace['#txtmissed#'] = 'Lancer une recherche';
 }
 
       $html = template_replace($replace, getTemplate('core', jeedom::versionAlias($_version), 'pvremote', 'pvremote'));
-      cache::set('pvremoteWidget' . $_version . $this->getId(), $html, 0);
       return $html;
   }
 
