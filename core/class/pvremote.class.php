@@ -461,6 +461,7 @@ $this->setLogicalId($this->getConfiguration('addr'));
 }
 
       $html = template_replace($replace, getTemplate('core', jeedom::versionAlias($_version), 'pvremote', 'pvremote'));
+      cache::set('pvremoteWidget' . $_version . $this->getId(), $html, 0);
       return $html;
   }
 
