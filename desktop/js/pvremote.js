@@ -32,28 +32,28 @@ function addCmdToTable(_cmd) {
   tr += '<td>';
   if (init(_cmd.type) == 'action') {
     tr += '<span class="cmdAttr" data-l1key="configuration" data-l2key="request"></span>';
-    else {
-      tr += '<span class="cmdAttr" data-l1key="configuration" data-l2key="value"></span>';
-    }
-    tr += '</td>';
-    tr += '<td>';
-
-    tr += '</td>';
-    tr += '<td>';
-    if (is_numeric(_cmd.id)) {
-      tr += '<a class="btn btn-default btn-xs cmdAction expertModeVisible" data-action="configure"><i class="fa fa-cogs"></i></a> ';
-      tr += '<a class="btn btn-default btn-xs cmdAction" data-action="test"><i class="fa fa-rss"></i> {{Tester}}</a>';
-    }
-    tr += '</td>';
-    tr += '</tr>';
-    $('#table_cmd tbody').append(tr);
-    $('#table_cmd tbody tr:last').setValues(_cmd, '.cmdAttr');
+  } else {
+    tr += '<span class="cmdAttr" data-l1key="configuration" data-l2key="value"></span>';
   }
+  tr += '</td>';
+  tr += '<td>';
+
+  tr += '</td>';
+  tr += '<td>';
+  if (is_numeric(_cmd.id)) {
+    tr += '<a class="btn btn-default btn-xs cmdAction expertModeVisible" data-action="configure"><i class="fa fa-cogs"></i></a> ';
+    tr += '<a class="btn btn-default btn-xs cmdAction" data-action="test"><i class="fa fa-rss"></i> {{Tester}}</a>';
+  }
+  tr += '</td>';
+  tr += '</tr>';
+  $('#table_cmd tbody').append(tr);
+  $('#table_cmd tbody tr:last').setValues(_cmd, '.cmdAttr');
+}
 }
 
 
-  $('#bt_selectActCmd').on('click', function () {
-    jeedom.cmd.getSelectModal({cmd: {type: 'action', subType: 'message'}}, function (result) {
-      $('.eqLogicAttr[data-l2key=alert]').atCaret('insert', result.human);
-    });
+$('#bt_selectActCmd').on('click', function () {
+  jeedom.cmd.getSelectModal({cmd: {type: 'action', subType: 'message'}}, function (result) {
+    $('.eqLogicAttr[data-l2key=alert]').atCaret('insert', result.human);
   });
+});
