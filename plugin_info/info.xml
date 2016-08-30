@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<info>
-    <id>pvremote</id>
-    <name>PVR Remote</name>
-    <licence>AGPL</licence>
-    <author>lunarok</author>
-    <require>2.2.4</require>
-    <category>multimedia</category>
-</info>

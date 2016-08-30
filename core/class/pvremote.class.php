@@ -460,9 +460,7 @@ class pvremote extends eqLogic {
       $replace['#txtmissed#'] = 'Lancer une recherche';
     }
 
-    $html = template_replace($replace, getTemplate('core', jeedom::versionAlias($_version), 'pvremote', 'pvremote'));
-    cache::set('pvremoteWidget' . $_version . $this->getId(), $html, 0);
-    return $html;
+    return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, 'current', 'pvremote')));
   }
 
 
