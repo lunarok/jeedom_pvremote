@@ -460,7 +460,7 @@ class pvremote extends eqLogic {
       $replace['#txtmissed#'] = 'Lancer une recherche';
     }
 
-    return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, 'current', 'pvremote')));
+    return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, 'pvremote', 'pvremote')));
   }
 
 
