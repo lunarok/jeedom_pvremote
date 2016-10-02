@@ -135,7 +135,7 @@ class pvremote extends eqLogic {
           $pvremoteCmd->setName(__('Notification - Episode', __FILE__));
           $pvremoteCmd->setEqLogic_id($pvremote->getId());
           $pvremoteCmd->setEqType('pvremote');
-          $pvremoteCmd->setLogicalId('notify_type');
+          $pvremoteCmd->setLogicalId('notify_episode');
         }
         $pvremoteCmd->setConfiguration('data', 'notify_episode');
         $pvremoteCmd->setType('info');
