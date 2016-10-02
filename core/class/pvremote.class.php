@@ -41,12 +41,12 @@ class pvremote extends eqLogic {
 
   public function preSave() {
     $this->setLogicalId($this->getConfiguration('addr'));
+    $url = config::byKey('externalProtocol') . config::byKey('externalAddr') . ':' . config::byKey('externalPort') . config::byKey('externalComplement') . '/plugins/pvremote/core/api/jeePVR.php?apikey=' . config::byKey('api') . '&id=' . $this->getId();
+    $this->setConfiguration('pushurl', $url);
   }
 
   public function postUpdate() {
     foreach (eqLogic::byType('pvremote') as $pvremote) {
-      $url = config::byKey('externalProtocol') . config::byKey('externalAddr') . ':' . config::byKey('externalPort') . config::byKey('externalComplement') . '/plugins/pvremote/core/api/jeePVR.php?apikey=' . config::byKey('api') . '&id=' . $pvremote->getId();
-      $pvremote->setConfiguration('pushurl', $url);
       if ($pvremote->getConfiguration('type') == 'sickbeard') {
         $cmdlogic = pvremoteCmd::byEqLogicIdAndLogicalId($pvremote->getId(),'playlist');
         if (!is_object($cmdlogic)) {
