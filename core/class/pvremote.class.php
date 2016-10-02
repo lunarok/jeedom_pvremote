@@ -45,6 +45,8 @@ class pvremote extends eqLogic {
 
   public function postUpdate() {
     foreach (eqLogic::byType('pvremote') as $pvremote) {
+      $url = config::byKey('externalProtocol') . config::byKey('externalAddr') . ':' . config::byKey('externalPort') . config::byKey('externalComplement') . '/plugins/pvremote/core/api/jeePVR.php?apikey=' . config::byKey('api') . '&id=' . $pvremote->getId();
+      $pvremote->setConfiguration('pushurl', $url);
       if ($pvremote->getConfiguration('type') == 'sickbeard') {
         $cmdlogic = pvremoteCmd::byEqLogicIdAndLogicalId($pvremote->getId(),'playlist');
         if (!is_object($cmdlogic)) {
@@ -112,6 +114,32 @@ class pvremote extends eqLogic {
         $pvremoteCmd->setConfiguration('request', 'getmissed');
         $pvremoteCmd->setType('action');
         $pvremoteCmd->setSubType('other');
+        $pvremoteCmd->save();
+        $pvremoteCmd = pvremoteCmd::byEqLogicIdAndLogicalId($pvremote->getId(),'notify_type');
+        if (!is_object($pvremoteCmd)) {
+          log::add('pvremote', 'debug', 'Création notify_type');
+          $pvremoteCmd = new pvremoteCmd();
+          $pvremoteCmd->setName(__('Notification - Type', __FILE__));
+          $pvremoteCmd->setEqLogic_id($pvremote->getId());
+          $pvremoteCmd->setEqType('pvremote');
+          $pvremoteCmd->setLogicalId('notify_type');
+        }
+        $pvremoteCmd->setConfiguration('data', 'notify_type');
+        $pvremoteCmd->setType('info');
+        $pvremoteCmd->setSubType('string');
+        $pvremoteCmd->save();
+        $pvremoteCmd = pvremoteCmd::byEqLogicIdAndLogicalId($pvremote->getId(),'notify_episode');
+        if (!is_object($pvremoteCmd)) {
+          log::add('pvremote', 'debug', 'Création notify_episode');
+          $pvremoteCmd = new pvremoteCmd();
+          $pvremoteCmd->setName(__('Notification - Episode', __FILE__));
+          $pvremoteCmd->setEqLogic_id($pvremote->getId());
+          $pvremoteCmd->setEqType('pvremote');
+          $pvremoteCmd->setLogicalId('notify_type');
+        }
+        $pvremoteCmd->setConfiguration('data', 'notify_episode');
+        $pvremoteCmd->setType('info');
+        $pvremoteCmd->setSubType('string');
         $pvremoteCmd->save();
 
       } else {

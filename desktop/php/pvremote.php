@@ -145,16 +145,11 @@ $eqLogics = eqLogic::byType('pvremote');
             </div>
 
             <div class="form-group">
-            <label class="col-sm-3 control-label">{{Commande de lecture}}</label>
-            <div class="col-sm-3">
-              <div class="input-group">
-                <input type="text"  class="eqLogicAttr configuration form-control" data-l1key="configuration" data-l2key="alert" />
-                <span class="input-group-btn">
-                  <a class="btn btn-default cursor" title="Rechercher une commande" id="bt_selectActCmd"><i class="fa fa-list-alt"></i></a>
-                </span>
+              <label class="col-sm-3 control-label">{{URL de notification}}</label>
+              <div class="col-sm-3">
+                <span class="eqLogicAttr configuration form-control" data-l1key="configuration" data-l2key="pushurl"></span>
               </div>
             </div>
-          </div>
 
           </fieldset>
         </form>
