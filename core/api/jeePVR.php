@@ -27,44 +27,28 @@ $notify = init('notify');
 $id = init('id');
 $episode = init('episode');
 
-$elogic = pvremote::byLogicalId($ip, 'pvremote');
+$elogic = pvremote::byId($id);
 if (!is_object($elogic)) {
-	if (config::byKey('include_mode','pvremote') != 1) {
-		return false;
-	}
-	$elogic = new pvremote();
-	$elogic->setEqType_name('pvremote');
-	$elogic->setLogicalId($ip);
-	$elogic->setName($device);
-	$elogic->setIsEnable(true);
-	$elogic->setConfiguration('ip',$ip);
-	$elogic->setConfiguration('device',$device);
-	$elogic->save();
-	event::add('pvremote::includeDevice',
-	array(
-		'state' => 1
-	)
-);
-} else {
-	if ($device != $elogic->getConfiguration('device')) {
-		$elogic->setConfiguration('device',$device);
-		$elogic->save();
-	}
+	echo json_encode(array('text' => __('Id inconnu : ', __FILE__) . init('id')));
+	die();
 }
 
-$cmdlogic = pvremoteCmd::byEqLogicIdAndLogicalId($elogic->getId(),$cmd);
+$cmdlogic = pvremoteCmd::byEqLogicIdAndLogicalId($elogic->getId(),'notify_type');
 if (!is_object($cmdlogic)) {
-	$cmdlogic = new pvremoteCmd();
-	$cmdlogic->setLogicalId($cmd);
-	$cmdlogic->setName($cmd);
-	$cmdlogic->setType('info');
-	$cmdlogic->setSubType('numeric');
-	$cmdlogic->setEqLogic_id($elogic->getId());
-	$cmdlogic->setConfiguration('taskid',$taskid);
-	$cmdlogic->setConfiguration('cmd',$cmd);
+	echo json_encode(array('text' => __('Cmd inconnu', __FILE__)));
+	die();
 }
-$cmdlogic->setConfiguration('value',$value);
-$cmdlogic->event($value);
+$cmdlogic->setConfiguration('value',$notify);
+$cmdlogic->event($notify);
+$cmdlogic->save();
+
+$cmdlogic = pvremoteCmd::byEqLogicIdAndLogicalId($elogic->getId(),'notify_episode');
+if (!is_object($cmdlogic)) {
+	echo json_encode(array('text' => __('Cmd inconnu', __FILE__)));
+	die();
+}
+$cmdlogic->setConfiguration('value',$episode);
+$cmdlogic->event($episode);
 $cmdlogic->save();
 
 return true;

@@ -147,7 +147,7 @@ $eqLogics = eqLogic::byType('pvremote');
             <div class="form-group">
               <label class="col-sm-3 control-label">{{URL de notification}}</label>
               <div class="col-sm-3">
-                <span class="eqLogicAttr configuration form-control" data-l1key="configuration" data-l2key="pushurl"></span>
+                <span class="eqLogicAttr" data-l1key="configuration" data-l2key="pushurl"></span>
               </div>
             </div>
 
