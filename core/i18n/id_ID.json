@@ -1,0 +1,47 @@
+{
+    "plugins\/pvremote\/desktop\/php\/pvremote.php": {
+        "Ajouter un équipement": "Ajouter un équipement",
+        "Rechercher": "Rechercher",
+        "Mes PVR": "Mes PVR",
+        "Sauvegarder": "Sauvegarder",
+        "Supprimer": "Supprimer",
+        "Configuration avancée": "Configuration avancée",
+        "Equipement": "Equipement",
+        "Commandes": "Commandes",
+        "Nom pvremote": "Nom pvremote",
+        "Nom de l'équipement pvremote": "Nom de l'équipement pvremote",
+        "Objet parent": "Objet parent",
+        "Aucun": "Aucun",
+        "Catégorie": "Catégorie",
+        "Activer": "Activer",
+        "Visible": "Visible",
+        "Commentaire": "Commentaire",
+        "Adresse": "Adresse",
+        "Clef API": "Clef API",
+        "URL Consultation": "URL Consultation",
+        "Type": "Type",
+        "Sickbeard": "Sickbeard",
+        "Couchpotato": "Couchpotato",
+        "URL de notification": "URL de notification",
+        "Nom": "Nom",
+        "Valeur": "Valeur",
+        "Paramètres": "Paramètres"
+    },
+    "plugins\/pvremote\/desktop\/js\/pvremote.js": {
+        "Tester": "Tester"
+    },
+    "plugins\/pvremote\/core\/class\/pvremote.class.php": {
+        "L\\adresse ne peut être vide": "L\\adresse ne peut être vide",
+        "Playlist": "Playlist",
+        "Nettoyer l'historique": "Nettoyer l'historique",
+        "Coming": "Coming",
+        "Missed": "Missed",
+        "Relancer les missed": "Relancer les missed",
+        "Notification - Type": "Notification - Type",
+        "Notification - Episode": "Notification - Episode",
+        "Mettre à jour la médiathèque": "Mettre à jour la médiathèque",
+        "Wanted": "Wanted",
+        "Snatched": "Snatched",
+        "Relancer la recherche": "Relancer la recherche"
+    }
+}
