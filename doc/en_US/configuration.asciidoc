@@ -1,5 +1,5 @@
 ==== The plugin configuration
 
-Le plugin ne comporte pas de configuration générale.
+The plugin does not have general configuration.
 
 Il faut entrer l'adresse de Sickbeard sur la page d'équipement ainsi que choisir l'adresse la commande de lecture.
