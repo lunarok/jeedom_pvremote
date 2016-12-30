@@ -2,4 +2,4 @@
 
 The plugin does not have general configuration.
 
-Il faut entrer l'adresse de Sickbeard sur la page d'équipement ainsi que choisir l'adresse la commande de lecture.
+You must enter the address of Sickbeard on the equipment page and then choose the read address command.
