@@ -3,7 +3,7 @@
         "Ajouter un équipement": "Gerät hinzufügen",
         "Rechercher": "Suchen",
         "Mes PVR": "Mein PVR",
-        "Sauvegarder": "Sauvegarder",
+        "Sauvegarder": "Speichern",
         "Supprimer": "Löschen",
         "Configuration avancée": "Erweiterte Konfiguration",
         "Equipement": "Gerät",
@@ -22,23 +22,23 @@
         "Type": "Typ",
         "Sickbeard": "Sickbeard",
         "Couchpotato": "Couchpotato",
-        "URL de notification": "URL de notification",
-        "Nom": "Nom",
-        "Valeur": "Valeur",
-        "Paramètres": "Paramètres"
+        "URL de notification": "URL Benachrichtigung",
+        "Nom": "Name",
+        "Valeur": "Wert",
+        "Paramètres": "Parameter"
     },
     "plugins\/pvremote\/desktop\/js\/pvremote.js": {
-        "Tester": "Tester"
+        "Tester": "Testen"
     },
     "plugins\/pvremote\/core\/class\/pvremote.class.php": {
-        "L\\adresse ne peut être vide": "L\\adresse ne peut être vide",
-        "Playlist": "Playlist",
-        "Nettoyer l'historique": "Nettoyer l'historique",
+        "L\\adresse ne peut être vide": "Die Adresse darf nicht leer sein",
+        "Playlist": "Wiedergabeliste",
+        "Nettoyer l'historique": "Archive reinigen",
         "Coming": "Coming",
         "Missed": "Missed",
         "Relancer les missed": "Relancer les missed",
-        "Notification - Type": "Notification - Type",
-        "Notification - Episode": "Notification - Episode",
+        "Notification - Type": "Benachrichtigung - Typ",
+        "Notification - Episode": "Benachrichtigung - ",
         "Mettre à jour la médiathèque": "Mettre à jour la médiathèque",
         "Wanted": "Wanted",
         "Snatched": "Snatched",
