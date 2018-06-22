@@ -1,10 +1,13 @@
 {
 	"id" : "pvremote",
 	"name" : "PVR Remote",
+	"description" : "Permet d'afficher la liste des épisodes disponibles, ceux à venir et les manqués par Sickbeard/Sickrage. On peut également purge l'historique et relancer la recherche des épisodes manqués.",
 	"licence" : "AGPL",
 	"author" : "lunarok",
 	"require" : "2.4",
 	"category" : "multimedia",
+	"language" : ["fr_FR","en_US"],
+	"compatibility" : ["miniplus","smart","rpi","docker","diy","mobile"],
     "changelog" : "https://lunarok.github.io/jeedom_docs/plugins/pvremote/changelog.html",
     "documentation" : "https://lunarok.github.io/jeedom_docs/plugins/pvremote/"
 }
