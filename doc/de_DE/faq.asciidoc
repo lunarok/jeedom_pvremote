@@ -1,5 +1,0 @@
-[panel,primary]
-.Stützt sich das Plugin auf APIs Dritter ?
---
-Non le plugin s'appuie sur des appels à l'API locale de Sickbeard
---

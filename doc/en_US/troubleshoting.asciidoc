@@ -1,5 +1,0 @@
-[panel,danger]
-. I don't have any information going back
---
-Il faut bien créer un équipement et attendre que Jeedom récupère les informations de Sickbeard
---

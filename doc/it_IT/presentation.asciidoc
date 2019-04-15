@@ -1,3 +1,0 @@
-==== Sickbeard Remote
-
-Ce plugin permet d'obtenir la liste des derniers épisodes Sickbeard et les prochaines diffusions

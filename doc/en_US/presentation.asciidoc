@@ -1,3 +1,0 @@
-==== Sickbeard Remote
-
-This plugin allows to get the list of the latest Sickbeard and next broadcasts
